@@ -1,0 +1,23 @@
+body{
+	color:#ffdbe4;
+	background-color:#926873;
+}
+button{
+	background-color:#ffdbe4;
+	margin-left:200px;
+	width:300px;
+	font-size:24px;
+}
+th{
+	font-size:30px;
+	text-align:left;
+}
+input{
+	width:250px;
+	margin:10px;
+	background-color:#ffdbe4;
+}
+label{
+	font-weight:bold;
+	font-size:24px;
+}

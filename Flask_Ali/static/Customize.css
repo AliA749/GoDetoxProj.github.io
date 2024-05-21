@@ -1,0 +1,17 @@
+#tbschedule {
+    width: 40%;
+    border-collapse: collapse;
+    margin-top: 5px; 
+}
+
+#tbschedule th {
+    background-color: gray;
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+#tbschedule td {
+    border: 1px solid black;
+    padding: 8px;
+}

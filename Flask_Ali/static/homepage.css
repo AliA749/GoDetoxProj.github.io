@@ -1,0 +1,36 @@
+button{
+	float:right;
+	border:none;
+	background-repeat:no-repeat;
+	background-position:center;
+	background-size:contain;
+	width:113px;
+	height:113px;
+}
+#log{
+	background-image:url("/static/logout.jpg");
+}
+#info{
+	background-image:url("/static/settings.jpg");
+}
+img:not(#topright){
+	width:700px;
+}
+th{
+	border:black solid;
+	font-size:45px;
+}
+table{
+	margin-left:auto;
+	margin-right:auto;
+}
+h1{
+	font-size:45px;
+	margin:auto;
+}
+#topright{
+	width:200px;
+	height:200px;
+}
+
+

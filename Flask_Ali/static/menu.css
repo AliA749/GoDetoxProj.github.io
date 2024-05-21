@@ -1,0 +1,57 @@
+th{
+	color:white;
+	background-image:url('/static/red.jpg');
+	background-repeat:no-repeat;
+	background-size: cover;
+	font-family:Courier New;
+	font-size:28px;
+	text-align:left;
+}
+td{
+	font-size:18px;
+	font-weight:bold;
+	padding-right:99px;
+	padding-bottom:10px;
+}
+#tblr{
+	margin:-270 0 0 361px;
+}
+#tblru{
+	margin:10 0 0 361px;
+}
+#tblrr{
+	margin:-407 0 0 700px;
+}
+#tblrru{
+	margin:-5 0 0 700px;
+}
+#red1 {
+	padding-right:670px;
+	background-size: 670px;
+}
+#red2{
+	background-size:330px;
+}
+#red3{
+	background-size:310px;
+}
+#red4{
+	background-size:310px;
+}
+#red5{
+	padding-right:670px;
+	background-size:370px;
+}
+#red6{
+	background-size:370px;
+}
+button{
+	border-radius:25px;
+	width:200px;
+	height:50px;
+	margin:-130 0 0 200px;
+	font-size:30px;
+	color:white;
+	font-weight:bold;
+	background-image:url('/static/red.jpg');
+}

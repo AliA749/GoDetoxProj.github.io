@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<title>Personal Info</title>
+		<link rel='stylesheet' href=/static/personalinfo.css></link>
+	</head>
+	<body>
+		<h1>Hello {{user}}!<h1>
+		<h6>Please fill out the information on the page</h6>
+		<table>
+			<form method='post'>
+				<tr>
+					<th>First Name</th>
+					<td><input name='txtfirst' value={{firstn}}></td>
+				</tr>
+				<tr>	
+					<th>Last Name</th>
+					<td><input name='txtlast' value={{lastn}}></td>
+				</tr>
+				<tr>
+					<th>Date Of Birth</th>
+					<td><input type='date' name='txtdob' value={{dob}}></td>
+				</tr>
+				<tr>	
+					<th>Phone Number</th>
+					<td><input type='number' placeholder='Phone number must be 10 digits long' name='txtphone' value={{pnum}}></td>
+				</tr>
+				<tr>	
+					<th>Address</th>
+					<td><input name='txtaddress' value={{address}}></td>
+				</tr>
+				<tr>	
+					<th>Email</th>
+					<td><input name='txtemail' value={{email}}></td>
+				</tr>
+				<tr>	
+					<th>Debit/Credit Card Number</th>
+					<td><input type='number' placeholder='Card number must between 13 and 19 digits long' name='txtd/ccn' value={{dccn}}></td>
+				</tr>
+				<tr>	
+					<th>Expiration Date</th>
+					<td><input type='date' name='txtexpd' value={{expd}}></td>
+				</tr>
+				<tr>	
+					<th>Card Verification Value</th>
+					<td><input type='number' placeholder='CVV must be 3 or 4 digits long' name='txtcvv' value={{cvv}}></td>
+				</tr>
+				<table>
+					<tr>
+						<td>
+							<button>Submit</button><br>
+							<label>{{error}}</label>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</table>
+	</body>
+</html>
