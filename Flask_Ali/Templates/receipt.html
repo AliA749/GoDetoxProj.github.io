@@ -1,57 +1,50 @@
 <html>
-	<head>
-		<title>Reciept</title>
-		<link rel='stylesheet' href='/static/receipt.css'></link>
-	</head>
-	<body>
-		<table>
-			<tr>
-				<th>Name</th>
-				<td>{{fname}} {{lname}}</td>
-			</tr>
-			<tr>
-				<th>Date of birth</th>
-				<td>{{dob}}</td>
-			</tr>
-			<tr>
-				<th>Phone #</th>
-				<td>{{pnum}}</td>
-			</tr>
-			<tr>
-				<th>Address</th>
-				<td>{{address}}</td>
-			</tr>
-			<tr>
-				<th>Email</th>
-				<td>{{email}}</td>
-			</tr>
-			<tr>
-				<th>Debit/credit card number</th>
-				<td>{{dccn}}</td>
-			</tr>
-			<tr>
-				<th>Expiration Date</th>
-				<td>{{expd}}</td>
-			</tr>
-			<tr>
-				<th>Card Verification Value</th>
-				<td>{{cvv}}</td>
-			</tr>
-			<tr>
-				<th>Items</th>
-			</tr>
-			{%for i in range(0,foodlen)%}
-				<tr>
-					<td id='borda'>
-						{{food[i]}}
-						<td>${{price[i]}}</td>
-					</td>
-				</tr>
-			{%endfor%}
-			<tr>
-				<th>Total</th>
-				<td>{{total}}</td>
-			</tr>
-		</table>
-	</body>
+<head>
+    <title>Receipt</title>
+    <link rel="stylesheet" href="/static/receipt.css">
+</head>
+<body>
+	<form method='get'>
+    <table>
+        <tr>
+            <th>Email</th>
+            <td>{{ loginacc[0] }}</td>
+        </tr>
+        <tr>
+            <th>Debit/Credit Card Number</th>
+            <td>{{ loginacc[2] }}</td>
+        </tr>
+        <tr>
+            <th>Expiration Date</th>
+            <td>{{ loginacc[3] }}</td>
+        </tr>
+        <tr>
+            <th>Card Verification Value</th>
+            <td>{{ loginacc[4] }}</td>
+        </tr>
+        <tr>
+            <th>Items</th>
+            <th>Price</th>
+        </tr>
+        {% for i in range(0, foodlen) %}
+        <tr>
+            <td>{{ food[i] }}</td>
+            <td>${{ price[i] }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <th>Total</th>
+            <td>${{ total }}</td>
+        </tr>
+        <tr>
+            <td>
+				<label>Is that all?</label><br>
+				<button type="submit" name="choice" value="yes">Yes</button>
+				<button type="submit" name="choice" value="no">No</button>
+				<button type="submit" name="choice" value="backtomenu">Back to Menu</button>
+            </td>
+        </tr>
+    </table>
+	</form>
+</body>
 </html>
