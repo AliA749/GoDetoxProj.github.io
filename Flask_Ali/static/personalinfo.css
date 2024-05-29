@@ -1,6 +1,6 @@
 body{
 	color:#ffdbe4;
-	background-color:#926873;
+	background-color:#464753;
 }
 button{
 	background-color:#ffdbe4;
@@ -11,13 +11,16 @@ button{
 th{
 	font-size:30px;
 	text-align:left;
+        color:#ffdbe4;
 }
 input{
 	width:250px;
 	margin:10px;
-	background-color:#ffdbe4;
+	background-color:#8c92ac;
+        color:#ffdbe4;
 }
 label{
 	font-weight:bold;
 	font-size:24px;
+       
 }

@@ -1,6 +1,6 @@
 body{
-	background-color:#550080;
-    color:#d580ff;
+	background-color:#19322E;
+    color:#6D7E7B;
 }
 h1{
 	text-align:center;
@@ -23,12 +23,12 @@ label{
 }
 input{
 	width:250px;
-	background-color:#eabfff;
+	background-color:#a2b4b1;
 	margin: 10px;
 }
 button{
 	margin-top:10px;
 	font-size:24px;
-	background-color:#eabfff;
+	background-color:#a2b4b1;
 	width:200px;
 }
