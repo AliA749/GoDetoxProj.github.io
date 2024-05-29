@@ -51,9 +51,8 @@ def menu():
         return render_template('menu.html')
     else:
         receiptwork()
-        return render_template('receipt.html', food=food, foodlen=foodlen, price=price, total=total)
+        return redirect(url_for('completeorder'))
     
-@app.route('/receipt', methods=['GET', 'POST'])
 def receiptwork():
     global food,foodlen,price,total,choice
     food=[]
@@ -62,10 +61,8 @@ def receiptwork():
     total=0
     food=request.form.getlist('Aclassics')
     foodlen=len(food)
-    if request.method == 'GET':
-        return render_template('receipt.html', loginacc=loginacc, food=food, price=price, foodlen=foodlen, total=total, choice=choice)
-        for i in range(foodlen):
-            switcher = {
+    for i in range(foodlen):
+        switcher = {
                 'Ham & Provolone':8.15,
                 'Tuna Fish':9.15,
                 'Roast Beef & Provolone':10.15,
@@ -86,24 +83,35 @@ def receiptwork():
                 'Chipotle':9.35,
                 'The Big Kahuna':10.35
         }
-            price.append(switcher.get(food[i],0))
-            total=total+price[i]
-        total=round(total,2)
-
-        if choice == 'yes':
-            return redirect(url_for('completeorder'))
-        elif choice =='no':
-            return render_template('receipt.html', loginacc=loginacc, food=food, price=price, foodlen=foodlen, total=total, choice=choice)
+        price.append(switcher.get(food[i],0))
+        total=total+price[i]
+    total=round(total,2)
+@app.route('/change', methods=['GET', 'POST'])        
+def change():
+    global total
+    if request.method == 'POST':
+        addmore = request.form.get('addmore')
+        if addmore == "+":
+            total += total
+            return render_template('completeorder.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price,total=total)
         else:
-            return redirect(url_for('menu'))
+            return redirect(url_for('completeorder'))
     else:
-        return "Nothing worked"
-    
+        return render_template('completeorder.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, choice=None, total=total)
+        
 
 
 @app.route('/completeorder', methods=['GET', 'POST'])
 def completeorder():
-    return "Order completed"
+    if request.method =="POST":
+         choice=request.form.get('yesorno')
+         if choice=='yes':
+             return render_template('receipt.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, total=total)
+         else:
+             return redirect(url_for('change'))
+    else:
+        choice=request.form.get('yesorno')
+        return render_template('completeorder.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, choice=choice, total=total)
 
 if __name__ == '__main__':
     app.run()
