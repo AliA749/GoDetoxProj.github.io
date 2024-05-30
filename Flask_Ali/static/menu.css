@@ -1,3 +1,12 @@
+body{
+    color:#EEEEEE;
+    background-color:#222831;
+    }
+label{
+        color:#EEEEEE;
+    }
+
+
 th{
 	color:white;
 	background-image:url('/static/red.jpg');
@@ -15,6 +24,7 @@ td{
 }
 #tblr{
 	margin:-270 0 0 361px;
+        color:#EEEEEE;
 }
 #tblru{
 	margin:10 0 0 361px;
