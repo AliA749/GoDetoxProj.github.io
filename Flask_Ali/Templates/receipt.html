@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="/static/receipt.css">
 </head>
 <body>
-	<form method='get'>
     <table>
         <tr>
             <th>Email</th>
@@ -28,23 +27,15 @@
         </tr>
         {% for i in range(0, foodlen) %}
         <tr>
-            <td>{{ food[i] }}</td>
-            <td>${{ price[i] }}</td>
+			<td>Amount {{count + 1}} </td>
+            <td>{{ food[i] }}</td> 
+            <td>${{ price[i]}}</td>
         </tr>
         {% endfor %}
         <tr>
             <th>Total</th>
-            <td>${{ total }}</td>
-        </tr>
-        <tr>
-            <td>
-				<label>Is that all?</label><br>
-				<button type="submit" name="choice" value="yes">Yes</button>
-				<button type="submit" name="choice" value="no">No</button>
-				<button type="submit" name="choice" value="backtomenu">Back to Menu</button>
-            </td>
+            <td>${{ new_total }}</td>
         </tr>
     </table>
-	</form>
 </body>
 </html>
