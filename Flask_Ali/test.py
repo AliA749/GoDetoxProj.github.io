@@ -3,6 +3,8 @@ import math
 
 app = Flask(__name__)
 
+global count
+count=0
 
 @app.route('/', methods=['GET', 'POST'])
 def personalinfo():
@@ -85,19 +87,29 @@ def receiptwork():
         }
         price.append(switcher.get(food[i],0))
         total=total+price[i]
+        base_total=total+price[i]
     total=round(total,2)
-@app.route('/change', methods=['GET', 'POST'])        
+    
+@app.route('/change', methods=['GET', 'POST'])
 def change():
-    global total
+    global total, count,base_total
+    base_total=total
     if request.method == 'POST':
         addmore = request.form.get('addmore')
         if addmore == "+":
-            total += total
-            return render_template('completeorder.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price,total=total)
+            count += 1
+            base_total=total
+            new_total = round(base_total*(count +1),2)
+            return render_template('completeorder.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, total=base_total, count=count, new_total=new_total)
+        elif addmore == "-" and count >0:
+            count -= 1
+            new_total = round(base_total* (count +1 ), 2)
+            return render_template('completeorder.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, total=base_total, count=count, new_total=new_total)
         else:
+            total=base_total
             return redirect(url_for('completeorder'))
     else:
-        return render_template('completeorder.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, choice=None, total=total)
+        return render_template('completeorder.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, choice=None, total=base_total, count=count)
         
 
 
@@ -106,7 +118,9 @@ def completeorder():
     if request.method =="POST":
          choice=request.form.get('yesorno')
          if choice=='yes':
-             return render_template('receipt.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, total=total)
+             base_total=total
+             new_total = round(base_total * (count + 1), 2)
+             return render_template('receipt.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, total=base_total, count=count,new_total=new_total)
          else:
              return redirect(url_for('change'))
     else:
