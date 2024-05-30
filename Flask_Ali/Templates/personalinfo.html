@@ -1,48 +1,31 @@
 <html>
 	<head>
 		<title>Personal Info</title>
-		<link rel='stylesheet' href=/static/personalinfo.css></link>
+		<link rel='stylesheet' href='/static/personalinfo.css'></link>
 	</head>
 	<body>
-		<h1>Hello {{user}}!<h1>
-		<h6>Please fill out the information on the page</h6>
+		<h1>Signup Page</h1>
 		<table>
 			<form method='post'>
-				<tr>
-					<th>First Name</th>
-					<td><input name='txtfirst' value={{firstn}}></td>
-				</tr>
 				<tr>	
-					<th>Last Name</th>
-					<td><input name='txtlast' value={{lastn}}></td>
+					<th>Username</th>
+					<td><input name='txtemail'></td>
 				</tr>
 				<tr>
-					<th>Date Of Birth</th>
-					<td><input type='date' name='txtdob' value={{dob}}></td>
-				</tr>
-				<tr>	
-					<th>Phone Number</th>
-					<td><input type='number' placeholder='Phone number must be 10 digits long' name='txtphone' value={{pnum}}></td>
-				</tr>
-				<tr>	
-					<th>Address</th>
-					<td><input name='txtaddress' value={{address}}></td>
-				</tr>
-				<tr>	
-					<th>Email</th>
-					<td><input name='txtemail' value={{email}}></td>
+					<th>Password</th>
+					<td><input name="txtpassword" type='password' ></td>
 				</tr>
 				<tr>	
 					<th>Debit/Credit Card Number</th>
-					<td><input type='number' placeholder='Card number must between 13 and 19 digits long' name='txtd/ccn' value={{dccn}}></td>
+					<td><input type='number' placeholder='Card number must between 13 and 19 digits long' name='txtd/ccn'></td>
 				</tr>
 				<tr>	
 					<th>Expiration Date</th>
-					<td><input type='date' name='txtexpd' value={{expd}}></td>
+					<td><input type='date' name='txtexpd'></td>
 				</tr>
 				<tr>	
 					<th>Card Verification Value</th>
-					<td><input type='number' placeholder='CVV must be 3 or 4 digits long' name='txtcvv' value={{cvv}}></td>
+					<td><input type='password' placeholder='CVV must be 3 digits long' name='txtcvv'></td>
 				</tr>
 				<table>
 					<tr>
