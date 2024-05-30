@@ -1,0 +1,39 @@
+<html>
+<head>
+    <title>Complete the Order</title>
+</head>
+<body>
+    <form method="post">
+        <h1>Thanks for your order, but is that all? {{ loginacc[0] }}</h1>
+        <button type="submit" value="yes" name="yesorno">Yes</button>
+        <button type="submit" value="no" name="yesorno">No</button>
+        <table id="nochoice">
+			{% if choice != 'no' %}
+            <tr>
+                <th>What you chose:</th>
+                <th>Price</th>
+            </tr>
+            {% for i in range(foodlen) %}
+                <tr>
+                    <td>{{ food[i] }}</td>
+                    <td>${{ price[i] }}</td>
+                </tr>
+            {% endfor %}
+				<tr>
+                    <td><button type="submit" value="+" name="addmore">+</button></td>
+					<button type="submit" name="addmore" value="-">-</button>
+				</tr>
+            {% endif %}
+				<tr>
+                    <td>Total:</td>
+                    <td>${{ total }}</td>
+				<tr>
+				<tr>
+                    <td>New Total:</td>
+                    <td>${{ new_total }}</td>
+				<tr>
+
+        </table>
+    </form>
+</body>
+</html>
