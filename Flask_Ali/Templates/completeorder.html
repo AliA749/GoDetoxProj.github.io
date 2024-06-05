@@ -5,34 +5,52 @@
 <body>
     <form method="post">
         <h1>Thanks for your order, but is that all? {{ loginacc[0] }}</h1>
+		
         <button type="submit" value="yes" name="yesorno">Yes</button>
+		{% if current_url == '/completeorder' %}
         <button type="submit" value="no" name="yesorno">No</button>
+		{% endif %}
         <table id="nochoice">
-			{% if choice != 'no' %}
-            <tr>
-                <th>What you chose:</th>
-                <th>Price</th>
-            </tr>
-            {% for i in range(foodlen) %}
-                <tr>
-                    <td>{{ food[i] }}</td>
-                    <td>${{ price[i] }}</td>
-                </tr>
-            {% endfor %}
-				<tr>
-                    <td><button type="submit" value="+" name="addmore">+</button></td>
-					<button type="submit" name="addmore" value="-">-</button>
-				</tr>
+            {% if error %}
+                <p style="color: red;">{{ error }}</p>
             {% endif %}
-				<tr>
-                    <td>Total:</td>
-                    <td>${{ total }}</td>
-				<tr>
-				<tr>
-                    <td>New Total:</td>
-                    <td>${{ new_total }}</td>
-				<tr>
 
+            {% if current_url == '/cardchecker' %}
+                <tr>
+                    <td>
+                        <label for="cardcheckertxt">Enter your card (security): </label>
+                        <input type="text" name="cardcheckertxt" id="cardcheckertxt">
+                        <button type="submit">Confirm</button>
+                    </td>
+                </tr>
+
+            {% elif current_url == '/change' %}
+                <tr>
+                    <td>
+                        <button type="submit" value="+" name="addmore">+</button>
+                        <button type="submit" value="-" name="addmore">-</button>
+                    </td>
+                </tr>
+				<tr>
+                    <th>What you chose:</th>
+                    <th>Price</th>
+                </tr>
+                {% for i in range(foodlen) %}
+                    <tr>
+                        <td>{{ food[i] }}</td>
+                        <td>${{ price[i] }}</td>
+                    </tr>
+                {% endfor %}
+
+            <tr>
+                <td>Total:</td>
+                <td>${{ total }}</td>
+            </tr>
+            <tr>
+                <td>New Total:</td>
+                <td>${{ new_total }}</td>
+            </tr>
+			{% endif %}
         </table>
     </form>
 </body>
