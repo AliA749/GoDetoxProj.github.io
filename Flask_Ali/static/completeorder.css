@@ -1,0 +1,33 @@
+body{
+	
+	color:#5f9ea0;
+	background-image: linear-gradient( 94.3deg,  rgba(26,33,64,1) 10.9%, rgba(81,84,115,1) 87.1% );
+}
+button{
+	background-image: linear-gradient( 109.6deg,  rgba(254,253,205,1) 11.2%, rgba(163,230,255,1) 91.1% );
+	margin-left:200px;
+	width:300px;
+	font-size:24px;
+}
+th{
+	color:#5f9ea0;
+	font-size:30px;
+	text-align:left;
+}
+input{
+	width:250px;
+	margin:10px;
+	background-image: linear-gradient( 109.6deg,  rgba(254,253,205,1) 11.2%, rgba(163,230,255,1) 91.1% );
+}
+label{
+	font-weight:bold;
+	font-size:24px;
+}
+table{
+	margin-right:auto;
+	margin-left:auto;
+}
+img{
+	width:180px;
+	border-radius:100px;
+}
