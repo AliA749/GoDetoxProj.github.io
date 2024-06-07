@@ -1,67 +1,86 @@
 body{
     color:#EEEEEE;
     background-color:#222831;
-    }
+}
 label{
-        color:#EEEEEE;
-    }
-
-
+    color:#EEEEEE;
+}
 th{
-	color:white;
-	background-image:url('/static/red.jpg');
-	background-repeat:no-repeat;
-	background-size: cover;
-	font-family:Courier New;
-	font-size:28px;
-	text-align:left;
+    color:white;
+    background-image: radial-gradient( circle 897px at 9% 80.3%,  rgba(55,60,245,1) 0%, rgba(234,161,15,0.90) 100.2% );
+    background-repeat:no-repeat;
+    background-size: cover;
+    font-family:Courier New;
+    font-size:28px;
+    text-align:left;
 }
 td{
-	font-size:18px;
-	font-weight:bold;
-	padding-right:99px;
-	padding-bottom:10px;
+    font-size:18px;
+    font-weight:bold;
+    padding-right:99px;
+    padding-bottom:10px;
+    position: relative;
 }
 #tblr{
-	margin:-270 0 0 361px;
-        color:#EEEEEE;
+    margin:-270px 0 0 370px;
+    color:#EEEEEE;
 }
 #tblru{
-	margin:10 0 0 361px;
+    margin:10px 0 0 361px;
 }
 #tblrr{
-	margin:-407 0 0 700px;
+    margin:-337px 0 0 700px;
 }
 #tblrru{
-	margin:-5 0 0 700px;
+    margin:-5px 0 0 700px;
 }
 #red1 {
-	padding-right:670px;
-	background-size: 670px;
+    padding-right:670px;
+    background-size: 670px;
 }
 #red2{
-	background-size:330px;
+    background-size:330px;
 }
 #red3{
-	background-size:310px;
+    background-size:310px;
 }
 #red4{
-	background-size:310px;
+    background-size:310px;
 }
 #red5{
-	padding-right:670px;
-	background-size:370px;
+    padding-right:670px;
+    background-size:370px;
 }
 #red6{
-	background-size:370px;
+    margin-top:200px;
+    background-size:370px;
 }
 button{
-	border-radius:25px;
-	width:200px;
-	height:50px;
-	margin:-130 0 0 200px;
-	font-size:30px;
-	color:white;
-	font-weight:bold;
-	background-image:url('/static/red.jpg');
+    border-radius:25px;
+    width:200px;
+    height:50px;
+    margin:-130px 0 0 200px;
+    font-size:30px;
+    color:white;
+    font-weight:bold;
+    background-image: radial-gradient( circle 897px at 9% 80.3%,  rgba(55,60,245,1) 0%, rgba(234,161,15,0.90) 100.2% );
+}
+img{
+    width:90px;
+    position: absolute;
+    top: 0;
+    left:370px;
+}
+
+#godetoxwrapimg{
+    width:90px;
+    position: absolute;
+    top: 0;
+    left:470px;
+}
+#acaibowlimg{
+    width:90px;
+    position: absolute;
+    top:60px;
+    left:0;
 }
