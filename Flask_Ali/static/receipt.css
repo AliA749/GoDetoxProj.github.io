@@ -1,15 +1,20 @@
 table{
 	margin-left:auto; 
 	margin-right:auto;
+	background-image: linear-gradient( 174.2deg,  rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4% );
+	
 }
 th{
-	font-size:24px;
+	font-size:40px;
 	width:fit-content;
 	border:solid black 1px;
 	text-align:left;
+	
 }
 td{
 	font-size:18px;
+	font-size:30px;
+	
 }
 #borda{
 	border:solid black 1px;
@@ -17,6 +22,6 @@ td{
 }
 
 body{
-	background-color:#8c92ac;
-    color:#e7f2ff;
+	background-image: linear-gradient( 94.3deg,  rgba(26,33,64,1) 10.9%, rgba(81,84,115,1) 87.1% );
+	
         }
