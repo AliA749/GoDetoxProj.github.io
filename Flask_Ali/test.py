@@ -65,25 +65,26 @@ def receiptwork():
     foodlen=len(food)
     for i in range(foodlen):
         switcher = {
-                'Ham & Provolone':8.15,
-                'Tuna Fish':9.15,
-                'Roast Beef & Provolone':10.15,
-                'The Veggie':8.15,
-                'Turkey & Provolone':9.15,
-                'Jersey Shores Favorite':8.15,
-                'The Super Sub':9.15,
-                'The Original Italian':10.15,
-                'Club Sub':10.15,
-                'Club Supreme':10.15,
-                'Portabella Musrooms & Swiss':7.55,
-                'Chicken Philly':9.25,
-                'Chicken Bacon Ranch':9.65,
-                'Chipotle Chicken':9.55,
-                'Buffalo Chicken':9.65,
-                'Big Kahuna Chicken':9.85,
-                'Famous Philly':9.45,
-                'Chipotle':9.35,
-                'The Big Kahuna':10.35
+                'Grilled Cheese Sandwich':4.95,
+                'Fresh Baked Bagel with Peanut Butter':2.99,
+                'Wheat Toast with Avocado':3.99,
+                'Meat Lovers Wrap':7.99,
+                'Super Veggie Wrap':7.99,
+                'Classic Breakfast Wrap':7.99,
+                'The Mexicalli Omelette':8.99,
+                'Best Buy Omelette':8.99,
+                'Acai Bowl':10.99,
+                'Mega Burger':10.49,
+                'The Big Dipper Burger':9.49,
+                'The Hawaiian Burger':8.99,
+                'Chopped Cheese Sandwich':9.95,
+                'Go Detox Wrap':9.95,
+                'Sweet and Sour Zinc Juice':6.99,
+                'Arctic Zen Juice':6.99,
+                'Kiwi Apple Juice':6.99,
+                'Pina Coalda Madness Smoothie':6.99,
+                'Tropical Bliss Smoothie':6.99,
+                'Strawberry Banana Blast Smoothie':6.99
         }
         price.append(switcher.get(food[i],0))
         total=total+price[i]
@@ -92,40 +93,60 @@ def receiptwork():
     
 @app.route('/change', methods=['GET', 'POST'])
 def change():
-    global total, count,base_total
+    global total, count,base_total,error,choice
     base_total=total
+    choice = request.form.get('yesorno')
+    error=""
     if request.method == 'POST':
         addmore = request.form.get('addmore')
         if addmore == "+":
             count += 1
             base_total=total
             new_total = round(base_total*(count +1),2)
-            return render_template('completeorder.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, total=base_total, count=count, new_total=new_total)
+            return render_template('completeorder.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, total=base_total, count=count, new_total=new_total, error=error,choice=choice,current_url=request.path)
         elif addmore == "-" and count >0:
             count -= 1
             new_total = round(base_total* (count +1 ), 2)
-            return render_template('completeorder.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, total=base_total, count=count, new_total=new_total)
+            return render_template('completeorder.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, total=base_total, count=count, new_total=new_total, error=error,choice=choice,current_url=request.path)
+        elif addmore == "-" and count <= 0:
+            return redirect(url_for('menu'))
         else:
             total=base_total
             return redirect(url_for('completeorder'))
     else:
-        return render_template('completeorder.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, choice=None, total=base_total, count=count)
+        return render_template('completeorder.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, choice=None, total=base_total, count=count,  current_url=request.path)
         
 
+@app.route('/cardchecker', methods=['GET', 'POST'])
+def cardchecker():
+    choice = request.form.get('yesorno')
+    cardcheck = request.form.get('cardcheckertxt')
+    error=""
+    if request.method == "POST":
+        if error == "":
+             if cardcheck == loginacc[2]:  # Check if the card number matches
+                base_total = total
+                new_total = round(base_total * (count + 1), 2)
+                return render_template('receipt.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, total=base_total, count=count, new_total=new_total, error=error, choice=choice)
+             else:
+                error="This card information doesnt match with this account."
+                return render_template('completeorder.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, choice=choice,  total=total,error=error,count=count, current_url=request.path)
+    else:
+        return render_template('completeorder.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, choice=choice, total=total,error=error, current_url=request.path)
 
-@app.route('/completeorder', methods=['GET', 'POST'])
+
+@app.route('/completeorder', methods=['GET', 'POST'])    
 def completeorder():
+    choice=request.form.get('yesorno')
     if request.method =="POST":
-         choice=request.form.get('yesorno')
+         cardcheck = request.form.get('cardcheckertxt')
          if choice=='yes':
-             base_total=total
-             new_total = round(base_total * (count + 1), 2)
-             return render_template('receipt.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, total=base_total, count=count,new_total=new_total)
+             return redirect(url_for('cardchecker'))
          else:
              return redirect(url_for('change'))
+                
     else:
-        choice=request.form.get('yesorno')
-        return render_template('completeorder.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, choice=choice, total=total)
+        return render_template('completeorder.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, choice=choice, total=total, current_url=request.path )
 
 if __name__ == '__main__':
     app.run()
