@@ -1,6 +1,11 @@
 body{
-	background-color:#19322E;
-    color:#6D7E7B;
+	background-image: linear-gradient( 94.3deg,  rgba(26,33,64,1) 10.9%, rgba(81,84,115,1) 87.1% );
+    color: #7fffd4;
+}
+img{
+	width:180px;
+	border-radius:100px;
+	margin-left:740px;
 }
 h1{
 	text-align:center;
@@ -12,23 +17,24 @@ h5{
 	margin-bottom:200px;
 }
 div{
-	width: 300px;
+	width: 700px;
 	margin-right:auto;
 	margin-left:auto;
 	text-align:center; 
 }
 label{
-	font-size:30px;
-	margin: 5px;
+	font-size:20px;
+	margin: 20px;
 }
 input{
 	width:250px;
-	background-color:#a2b4b1;
+	background-image: linear-gradient( 109.6deg,  rgba(254,253,205,1) 11.2%, rgba(163,230,255,1) 91.1% );
 	margin: 10px;
 }
 button{
 	margin-top:10px;
 	font-size:24px;
-	background-color:#a2b4b1;
+	color:#778899;
+	background-image: linear-gradient( 109.6deg,  rgba(254,253,205,1) 11.2%, rgba(163,230,255,1) 91.1% );
 	width:200px;
 }
