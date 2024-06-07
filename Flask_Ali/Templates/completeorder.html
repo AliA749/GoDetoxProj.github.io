@@ -39,7 +39,7 @@
                 {% for i in range(foodlen) %}
                     <tr>
                         <td>{{ food[i] }}</td>
-                        <td>${{ price[i] }}</td>
+                        <td>${{ price[i],count+1 }}</td>
                     </tr>
                 {% endfor %}
 
