@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template, redirect, url_for, session
+from os import path
 import math
 
 app = Flask(__name__)
@@ -125,6 +126,7 @@ def cardchecker():
     if request.method == "POST":
         if error == "":
              if cardcheck == loginacc[2]:  # Check if the card number matches
+                receipt()
                 base_total = total
                 new_total = round(base_total * (count + 1), 2)
                 return render_template('receipt.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, total=base_total, count=count, new_total=new_total, error=error, choice=choice)
@@ -148,5 +150,24 @@ def completeorder():
     else:
         return render_template('completeorder.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, choice=choice, total=total, current_url=request.path )
 
+def receipt():
+    global notice
+    recieptforuser = loginacc[0] + ".txt"
+    ifexist = path.exists(recieptforuser)
+
+    if (ifexist != recieptforuser):
+        with open(recieptforuser, "w") as receiptfile:
+            receiptitems = f"{loginacc[0]}, {food}, {price},total:{total}"
+            receiptfile.write(receiptitems)
+            notice= "Receipt downloaded to notes"
+    else:
+        with open(recieptforuser, "a") as receiptfile:
+            receiptitems = f"{loginacc[0]}, {food}, {price}, total:{total}"
+            receiptfile.write(receiptitems)
+            notice= "Receipt updated with new items"
+
+
+        
+    
 if __name__ == '__main__':
     app.run()
