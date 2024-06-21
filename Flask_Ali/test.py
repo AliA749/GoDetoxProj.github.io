@@ -22,7 +22,7 @@ def personalinfo():
         if passwrd !='' and email !='' and dccn !="" and expd !="" and cvv !="":
             return redirect(url_for('main'))
         else:
-            error = 'An error in one of the information you have entered.'
+            error = "Don't leave any information blank"
             return render_template('personalinfo.html', error=error)
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -43,7 +43,20 @@ def main():
         if loginacc == signupacc:
             return redirect(url_for('menu'))
         else:
-            error = 'Enter the user and pass information correctly.'
+            match (loginacc[0], loginacc[1], loginacc[2], loginacc[3], loginacc[4]):
+                case (u, _, _, _, _) if u != signupacc[0]:
+                    error = 'Enter the user information correctly.'
+                case (_, p, _, _, _) if p != signupacc[1]:
+                    error = 'Enter the password correctly.'
+                case (_, _, c, _, _) if c != signupacc[2]:
+                    error = 'Enter the correct card number.'
+                case (_, _, _, e, _) if e != signupacc[3]:
+                    error = 'Enter the correct expiration date.'
+                case (_, _, _, _, cv) if cv != signupacc[4]:
+                    error = 'Enter the correct CVV for your card.'
+                case _:
+                    error = 'Unknown error.'
+
             return render_template('index.html', error=error)
 
 @app.route('/menu', methods=['GET', 'POST'])
@@ -120,15 +133,16 @@ def change():
 
 @app.route('/cardchecker', methods=['GET', 'POST'])
 def cardchecker():
+    global new_total
     choice = request.form.get('yesorno')
     cardcheck = request.form.get('cardcheckertxt')
     error=""
+    base_total = total
+    new_total = round(base_total * (count + 1), 2)
     if request.method == "POST":
         if error == "":
              if cardcheck == loginacc[2]:  # Check if the card number matches
                 receipt()
-                base_total = total
-                new_total = round(base_total * (count + 1), 2)
                 return render_template('receipt.html', loginacc=loginacc, food=food, foodlen=foodlen, price=price, total=base_total, count=count, new_total=new_total, error=error, choice=choice)
              else:
                 error="This card information doesnt match with this account."
@@ -157,12 +171,12 @@ def receipt():
 
     if (ifexist != recieptforuser):
         with open(recieptforuser, "w") as receiptfile:
-            receiptitems = f"{loginacc[0]}, {food}, {price},total:{total}"
+            receiptitems = f"{loginacc[0]}, {food},Amount of each food/drink:{count+1}, {price},total:{new_total}"
             receiptfile.write(receiptitems)
             notice= "Receipt downloaded to notes"
     else:
         with open(recieptforuser, "a") as receiptfile:
-            receiptitems = f"{loginacc[0]}, {food}, {price}, total:{total}"
+            receiptitems = f"{loginacc[0]}, {food}, {price}, total:{new_total}"
             receiptfile.write(receiptitems)
             notice= "Receipt updated with new items"
 
